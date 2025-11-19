@@ -1,31 +1,33 @@
+from __future__ import annotations
+from typing import Optional, List
+from uuid import UUID
+from datetime import datetime
 from pydantic import BaseModel
-from typing import List, Optional
 
-class Citation(BaseModel):
-    quote: str
-    why: str
+class NoteCreate(BaseModel):
+    title: Optional[str] = None
+    body: str
 
-class SummarizeIn(BaseModel):
-    note_id: str
-    text: str
-    options: Optional[dict] = None
+class NoteUpdate(BaseModel):
+    title: Optional[str] = None
+    body: str
 
-class SummarizeOut(BaseModel):
-    note_id: str
-    summary: List[str]
-    key_points: List[str]
-    citations: List[Citation]
-    meta: dict
+class NoteOut(BaseModel):
+    id: UUID
+    owner_id: UUID
+    title: Optional[str] = None
+    body: str
+    status: str
+    archived_at: Optional[datetime] = None
+    trashed_at: Optional[datetime] = None
+    is_pinned: bool = False
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
 
-class QAIn(BaseModel):
-    note_id: str
-    question: str
-    text: str
-    options: Optional[dict] = None
+    model_config = {
+        "from_attributes": True
+    }
 
-class QAOut(BaseModel):
-    note_id: str
-    question: str
-    answer: str
-    citations: List[Citation]
-    meta: dict
+class NoteList(BaseModel):
+    items: List[NoteOut]
+    total: int

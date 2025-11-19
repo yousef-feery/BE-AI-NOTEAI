@@ -1,26 +1,26 @@
 from fastapi import APIRouter, HTTPException
-from app.schemas import QAIn, QAOut, Citation
+from pydantic import BaseModel
+from typing import List
 
-router = APIRouter(prefix="/notes", tags=["qa"])
+class Citation(BaseModel):
+    quote: str
+    why: str
+
+class QAIn(BaseModel):
+    note_id: str
+    question: str
+    text: str
+    options: dict | None = None
+
+class QAOut(BaseModel):
+    note_id: str
+    question: str
+    answer: str
+    citations: List[Citation]
+    meta: dict
+
+router = APIRouter(prefix="/notes", tags=["ai"])
 
 @router.post("/qa", response_model=QAOut)
-def answerQuestion(payload: QAIn):
-    # 1) Validate input
-    if not payload.text or not payload.text.strip():
-        raise HTTPException(status_code=400, detail="text is required")
-    if not payload.note_id or not payload.note_id.strip():
-        raise HTTPException(status_code=400, detail="note_id is required")
-    if not payload.question or not payload.question.strip():
-        raise HTTPException(status_code=400, detail="question is required")
-
-    citations = []  # integrate later
-    answer = "Not enough info."
-
-    # 5) Return structured JSON
-    return QAOut(
-        note_id=payload.note_id,
-        question=payload.question,
-        answer=answer,
-        citations=[Citation(**c) for c in citations],
-        meta={"status": "not_implemented"}
-    )
+def qa_stub(payload: QAIn):
+    raise HTTPException(status_code=501, detail="Q&A not implemented yet")
