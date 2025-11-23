@@ -8,8 +8,8 @@ from sqlalchemy import (
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.dialects.postgresql import UUID as PGUUID
 from .db import Base
-from sqlalchemy.dialects.postgresql import UUID as PGUUID, ENUM as PGEnum
-
+from sqlalchemy.dialects.postgresql import UUID as PGUUID, ENUM as PGEnum, JSONB
+from typing import List
 class User(Base):
     __tablename__ = "users"
     id: Mapped[UUID] = mapped_column(PGUUID(as_uuid=True), primary_key=True)
@@ -57,3 +57,15 @@ class Favorite(Base):
     user_id: Mapped[UUID] = mapped_column(PGUUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), primary_key=True)
     note_id: Mapped[UUID] = mapped_column(PGUUID(as_uuid=True), ForeignKey("notes.id", ondelete="CASCADE"), primary_key=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class NoteEmbedding(Base):
+    __tablename__ = "note_embeddings"
+
+    note_id: Mapped[UUID] = mapped_column(
+        PGUUID(as_uuid=True),
+        ForeignKey("notes.id", ondelete="CASCADE"),
+        primary_key=True,
+    )
+    # store vector as JSONB [float, ...]
+    embedding: Mapped[list[float]] = mapped_column(JSONB, nullable=False)

@@ -3,7 +3,7 @@ from __future__ import annotations
 import time
 from fastapi import FastAPI, Request
 from sqlalchemy import text
-
+from sqlalchemy.dialects.postgresql import UUID as PGUUID, ENUM as PGEnum, JSONB
 from .db import Base, engine, get_db
 from .routers import notes, favorites, summarize, qa, auth
 
