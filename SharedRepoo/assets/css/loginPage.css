@@ -1,0 +1,135 @@
+/* Page background */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #e6ebf5;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Login container */
+.login-container {
+    text-align: center;
+    width: 380px;
+    z-index: 10;
+}
+
+/* Logo placeholder */
+.logo {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #2b1c55;
+    font-weight: bold;
+}
+
+/* Header */
+h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: bold;
+    color: #2b1c55;
+}
+
+.subtitle {
+    color: #514f5e;
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+.input {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #b0b0c1;
+    border-radius: 6px;
+    margin: 7px 0;
+    outline: none;
+}
+
+/* Continue button */
+.continue-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #3e2a6d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Login providers */
+.providers {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.google-btn,
+.apple-btn {
+    border: 1px solid #9b9daf;
+    background: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* Footer */
+.footer {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #4a4563;
+}
+
+.footer a {
+    color: #2b1c55;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Left gradient circle */
+.circle-left {
+    position: absolute;
+    left: -180px;
+    bottom: -150px;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle at 30% 30%, #d5cbe8, #44306b);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Right gradient circle */
+.circle-right {
+    position: absolute;
+    right: -150px;
+    top: 100px;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle at 70% 70%, #d5cbe8, #44306b);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* X group */
+.x-group {
+    position: absolute;
+    right: 140px;
+    top: 180px;
+    color: #4c4763;
+    opacity: 0.5;
+    font-size: 22px;
+    line-height: 38px;
+    z-index: 2;
+}
+.logo {
+    width: 80px;      
+    margin-bottom: 15px;
+}
